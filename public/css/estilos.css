@@ -1,0 +1,63 @@
+/*
+COLOR PRIMARIO AZUL OSCURO #19456b 
+AZUL CLARO #38a3cb
+AZUL GRIS #4c87a4
+VERDE AGUA #5fc0c9
+*/
+
+.fondo-primero
+{
+    background-color: #19456b;
+}
+.fondo-segundo
+{
+    background-color: #38a3cb;
+}
+.fondo-tercero
+{
+    background-color: #4c87a4;
+}
+.fondo-cuarto
+{
+    background-color: #5fc0c9;
+}
+.fondo-rojo
+{
+    background-color: #78281f;
+}
+.fondo-amarillo
+{
+    background-color: #FFB71B;
+}
+.fondo-gris
+{
+    background-color: #BBBBBC;
+}
+.texto-amarillo
+{
+    color: #FFB71B !important;
+} 
+.texto-primero
+{
+    color: #19456b;
+}
+.texto-segundo
+{
+    color:#38a3cb;
+}
+.texto-verde
+{
+    color:#0e6251;
+}
+.texto-naranja
+{
+    color: #6e2c00;
+}
+.texto-azul
+{
+    color: #003B71;
+}
+.texto-rojo
+{
+    color: #78281f;
+}
