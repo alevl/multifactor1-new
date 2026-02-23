@@ -1,80 +1,19 @@
 <div>
     <x-layouts.menu-franquicia>
-        <div class="container">
-            <span class="text-2xl font-semi-bold leading-normal">{{ __('Profile') }}</span>
-
-            <div class="bg-white rounded shadow p-4 mt-6" >
-                <div class="flex flex-wrap -mb-6 mt-6">
-                    <h4 class="text-lg font-semibold mb-6 texto-azul">{{ __('Personal information') }}</h4>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 my-4 p-2 rounded">
-                    <div class="mb-4">
-                        <x-label value="{{ __('Username') }}" />
-                        <x-input wire:model.defer="username" type="text" class="w-full" disabled />
-                        <x-input-error for="username"/>
-                    </div>
-                    <div class="mb-4">
-                        <x-label value="{{ __('Company') }}" />
-                        <x-input wire:model.defer="empresa" type="text" class="w-full" disabled />
-                        <x-input-error for="empresa"/>
-                    </div>
-                    <div class="mb-4">
-                        <x-label value="{{ __('Name') }}" />
-                        <x-input wire:model.defer="name" type="text" class="w-full" />
-                        <x-input-error for="name"/>
-                    </div>
-                    <div class="mb-4">
-                        <x-label value="{{ __('Phone') }}" />
-                        <x-input wire:model.defer="telefono" type="text" class="w-full" />
-                        <x-input-error for="telefono"/>
-                    </div>
-                </div>
-                <x-boton-primario wire:click="actualizar" wire:loading.attr="disabled" class="disabled:opacity-25 ml-2 bg-primary text-white p-2 mb-6">
-                    {{ __('Update Information') }}
-                </x-boton-primario>
-            </div>
-
-            <div class="bg-white rounded shadow p-4 mt-6" >
-                <div class="flex flex-wrap -mb-6 mt-4">
-                    <h4 class="text-lg font-semibold mb-6 texto-azul">{{ __('Change Password') }}</h4>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 my-4 p-2 rounded">
-                    <div class="mb-4">
-                        <x-label value="{{ __('Password') }}" />
-                        <x-input wire:model.defer="password1" type="password" class="w-full" />
-                        <x-input-error for="password1"/>
-                    </div>
-                    <div class="mb-4">
-                        <x-label value="{{ __('Repeat Password') }}" />
-                        <x-input wire:model.defer="password2" type="password" class="w-full" />
-                        <x-input-error for="password2"/>
-                    </div>
-                </div>
-                <x-boton-primario wire:click="actualizar_clave" wire:loading.attr="disabled" class="disabled:opacity-25 ml-2 bg-primary text-white p-2">
-                    {{ __('Update Password') }}
-                </x-boton-primario>
-            </div>
-        </div>
-    </x-layouts.menu-franquicia>
-</div>
-
-
         <div class="bg-gray-100 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <span class="text-2xl font-semi-bold leading-normal">{{ __('Vista General') }}</span>
-            <div class="col-12" style="overflow-x: auto" wire:ignore>
+            <div class="col-12" style="overflow-x: auto">
                 <div id="map" style="height:500px; width:100%;"></div>
             </div>
-
         </div>
 
 
+<div wire:ignore>
+    <div id="chart-temperatura" style="min-height: 350px;"></div>
+</div>
 
-
-
-
-
-
-
+    </x-layouts.menu-franquicia>
+    @push('js')
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-aarw02OP9iW4pwHoOlbZ2njidcJY82I&callback=initMap" async></script> 
         <script> 
             let map, activeInfoWindow, markers = [];
@@ -163,3 +102,51 @@
                 console.log(event.latLng.lng());
             }
         </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function initChart() {
+        const options = {
+            chart: { type: 'line', height: 350 },
+            series: [{
+                name: 'Voltaje',
+                data: @json($temps ?? [])
+            }],
+            xaxis: { categories: @json($labels ?? []) }
+        };
+
+        const chartElement = document.querySelector("#chart-temperatura");
+        if (chartElement) {
+            chartElement.innerHTML = ''; // Limpiar para evitar duplicados
+            new ApexCharts(chartElement, options).render();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', initChart);
+    document.addEventListener('livewire:navigated', initChart);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @endpush
+</div>

@@ -84,9 +84,9 @@
                 )
             })
 
-            Livewire.onPageExpired((response, message) => {
-                location.reload()
-            })
+//            Livewire.onPageExpired((response, message) => {
+//                location.reload()
+//            })
         </script>
     </body>
 </html>

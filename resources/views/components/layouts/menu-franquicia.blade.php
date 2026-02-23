@@ -50,6 +50,9 @@
                         <a href="{{ route('dashboard-franchisee') }}" class="block py-2 px-3 text-gray-400 hover:text-blue-300 md:p-0">{{ __('Dashboard') }}</a>
                     </li>
                     <li>
+                        <a href="{{ route('mapa') }}" class="block py-2 px-3 text-gray-400 hover:text-blue-300 md:p-0">{{ __('Mapa') }}</a>
+                    </li>
+                    <li>
                         <a href="{{ route('datos-franchisee') }}" class="block py-2 px-3 text-gray-400 hover:text-blue-300 md:p-0">{{ __('Data') }}</a>
                     </li>
                     <li>

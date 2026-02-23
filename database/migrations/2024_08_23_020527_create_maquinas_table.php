@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('modelo')->nullable()->default(3);
             $table->bigInteger('usuario_id')->unsigned()->nullable();
             $table->bigInteger('propietario_id')->unsigned()->nullable();
+            $table->string('latitud', 10)->nullable();
+            $table->string('longitud', 20)->nullable();
             $table->bigInteger('usuario_lectura')->unsigned()->nullable();
             $table->string('nombre', 20)->nullable();
             $table->Integer('estatus_device')->nullable();

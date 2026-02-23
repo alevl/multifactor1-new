@@ -1478,7 +1478,7 @@ class EntradasController extends Controller
                 $registros = $lectura->count();
                 if($registros > 90000)
                 {
-                    $borrar = Lectura::where('maquina', $var0)->orderBy('id', 'asc')->take(100)->delete();
+                    $borrar = Lectura::where('maquina', $var0)->orderBy('id', 'asc')->take(500)->delete();
                 }
 
                 $lectura_baja = $propietario->lectura_minima;
@@ -1917,7 +1917,7 @@ class EntradasController extends Controller
                     $fecha_actual = date('d/m/Y');
                     $hora_actual = date('H:i:s');
                     $fecha_invertida = date('Y').date('m').date('d');
-                
+echo "INGRESA";                
                     $actualizar = Maquina::where('id_maquina', $var0)
                     ->update([
                         'voltaje' => $var2,
@@ -1925,6 +1925,22 @@ class EntradasController extends Controller
                         'chorizo' => $chorizo,
                     ]);
 
+                    $lectura = Lectura::create([
+                        'maquina' => $var0,
+                        'usuario_id' => $usuario_id,
+                        'temperatura' => $var2,
+                        'humedad' => null,
+                        'fecha' => $fecha_actual,
+                        'hora' => $hora_actual,
+                        'fecha_invertida' => $fecha_invertida,
+                    ]);
+
+                    $registros = $lectura->count();
+                    if($registros > 90000)
+                    {
+                        $borrar = Lectura::where('maquina', $var0)->orderBy('id', 'asc')->take(500)->delete();
+                    }
+                    
                     $cambio = Maquina::where('id_maquina', $var0)->first();
 
                     if($cambio->estatus_voltaje == 1)

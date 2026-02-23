@@ -55,7 +55,9 @@ class Maquina extends Model
         'factor_voltaje',
         'ajuste_voltaje',
         'estatus_voltaje',
-        'encendido_permanente'
+        'encendido_permanente',
+        'latitud',
+        'longitud',
     ];
 
     public function maquina_propietario()

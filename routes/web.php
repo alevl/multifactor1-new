@@ -18,6 +18,7 @@ use App\Livewire\Franquiciado\PerfilF;
 use App\Livewire\Franquiciado\LecturasF;
 use App\Livewire\Franquiciado\Dispositivos;
 use App\Livewire\Franquiciado\Alertas;
+use App\Livewire\Franquiciado\Mapa;
 
 use App\Livewire\User\Dashboard;
 //use App\Livewire\User\Configuracion;
@@ -66,6 +67,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('profile-franchisee', Perfi
 Route::middleware(['auth:sanctum', 'verified'])->get('data-franchisee', LecturasF::class)->name('datos-franchisee');
 Route::middleware(['auth:sanctum', 'verified'])->get('devices', Dispositivos::class)->name('dispositivos');
 Route::middleware(['auth:sanctum', 'verified'])->get('alertas', Alertas::class)->name('alertas');
+Route::middleware(['auth:sanctum', 'verified'])->get('mapa', Mapa::class)->name('mapa');
 
 /*APARTADO USER*/
 Route::middleware(['auth:sanctum', 'verified'])->get('dashboard', Dashboard::class)->name('dashboard');
